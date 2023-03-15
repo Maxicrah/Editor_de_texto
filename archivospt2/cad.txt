@@ -1,0 +1,13 @@
+Ejercicio 1
+Escribir una GUI con un botón con la leyenda “Mostrar fecha” y que al presionarlo
+muestre por consola la fecha del día.
+
+Ejercicio 2
+Escribir una GUI con dos botones, uno con la leyenda “Info” y otro con la leyenda
+“Advertencia”. Al hacer click a uno, debe mostrar una ventana emergente de
+información con el mensaje que Ud. quiera. Y el otro debe mostrar una ventana
+emergente de advertencia, también, con el mensaje que Ud. quiera.
+
+Ejercicio 3
+Escribir una GUI con una entrada de texto y un botón con la leyenda “Mostrar”. Al hacer
+click en el botón se debe mostrar el contenido de la entrada de texto por consola.
