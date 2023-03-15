@@ -53,7 +53,7 @@ class App(ttk.Frame):
     @staticmethod
     def mensaje(msj='mundo!'):
        pass
-k
+
 
 
 
