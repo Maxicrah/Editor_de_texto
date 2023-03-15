@@ -7,7 +7,7 @@ class App(ttk.Frame):
         super().__init__(parent)
         self.parent=parent
         parent.title("Editor de texto")
-       
+       #hola
         #asignar menu ventana principal
         self.menu=tk.Menu(self.parent)
         #cuadro texto
