@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk,Button
+from tkinter import ttk
 from tkinter import filedialog
 root=tk.Tk()
 class App(ttk.Frame):
@@ -25,6 +25,10 @@ class App(ttk.Frame):
         self.menu_edit.add_command(label="COPIAR",command=self.copiar)
         self.menu_edit.add_command(label="PEGAR",command=self.pegar) 
         self.menu.add_cascade(label="Edicion", menu=self.menu_edit)
+        #creando menu ayuda
+        self.menu_ayuda = tk.Menu(self.menu, tearoff=0)
+        self.menu_ayuda.add_command(label="Acerca de...", command=self.mostrar_acerca_de)
+        self.menu.add_cascade(label="Ayuda", menu=self.menu_ayuda)
         #agregar menu a ventana principal
         self.parent.config(menu=self.menu)
 
@@ -71,13 +75,11 @@ class App(ttk.Frame):
         """metodo para pegar fuera o adentro del texto"""
         self.cuadro_texto.event_generate("<<Paste>>")
 
-
-
-    @staticmethod
-    def mensaje(msj='mundo!'):
-       pass
-
-
+    def mostrar_acerca_de(self):
+        """metodo para mostrar informacion del desarrollador"""
+        self.acerca_de=tk.Toplevel(self.parent)
+        self.acerca_de.title("Acerca de...")
+        ttk.Label(self.acerca_de, text="Editor de Texto\nDesarrollado por Maximiliano Ramiro Flores").grid()
 
 
 editor_de_texto = App(root).grid()
