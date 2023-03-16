@@ -7,7 +7,6 @@ class App(ttk.Frame):
         super().__init__(parent)
         self.parent=parent
         parent.title("Editor de texto")
-       #hola
         #asignar menu ventana principal
         self.menu=tk.Menu(self.parent)
         #cuadro texto
@@ -20,14 +19,17 @@ class App(ttk.Frame):
         self.menu.add_separator()
         self.menu_arch.add_command(label="SALIR",command=self.salir_arch)
         self.menu.add_cascade(label="Archivo", menu=self.menu_arch)
-        #creando menu 
-        
+        #creando menu edicion
+        self.menu_edit = tk.Menu(self.menu, tearoff=0)
+        self.menu_edit.add_command(label="CORTAR",command=self.cortar)
+        self.menu_edit.add_command(label="COPIAR",command=self.copiar)
+        self.menu_edit.add_command(label="PEGAR",command=self.pegar) 
+        self.menu.add_cascade(label="Edicion", menu=self.menu_edit)
         #agregar menu a ventana principal
         self.parent.config(menu=self.menu)
 
 
     def abrir_arch(self):
-        
         """funcion paraa abrir un archivo.txt"""
         
         nombre_archivo = filedialog.askopenfilename(title="Abrir", initialdir="C:/", filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")])
@@ -37,10 +39,6 @@ class App(ttk.Frame):
                 contenido = archivo.read()
             self.cuadro_texto.delete("1.0","end")    
             self.cuadro_texto.insert("end",contenido)    
-
-    
-    
-
 
     def guardar_arch(self):
         """funcion que guarda un archivo"""
@@ -56,9 +54,25 @@ class App(ttk.Frame):
             with open(self.archivo_actual, "w") as archivo:
                 archivo.write(contenido)
 
-    def salir_arch(self):    
-        pass
+    def salir_arch(self):
+        """metodo para salir de la app"""    
+        self.parent.quit()
     
+
+    def cortar(self):
+        """metodo para cortar lo seleccionado en el texto"""
+        self.cuadro_texto.event_generate("<<Cut>>")
+    
+    def copiar(self):
+        """metodo paraa copiar lo seleccionado del texto"""
+        self.cuadro_texto.event_generate("<<Copy>>")
+    
+    def pegar(self):
+        """metodo para pegar fuera o adentro del texto"""
+        self.cuadro_texto.event_generate("<<Paste>>")
+
+
+
     @staticmethod
     def mensaje(msj='mundo!'):
        pass
