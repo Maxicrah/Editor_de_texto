@@ -20,21 +20,19 @@ class App(ttk.Frame):
         self.menu.add_separator()
         self.menu_arch.add_command(label="SALIR",command=self.salir_arch)
         self.menu.add_cascade(label="Archivo", menu=self.menu_arch)
-        
+        #creando menu 
         
         #agregar menu a ventana principal
         self.parent.config(menu=self.menu)
 
-        #archivo actual le asignamos el valor None para que inicialice vacio
-        self.archivo_actual=None
 
     def abrir_arch(self):
         
         """funcion paraa abrir un archivo.txt"""
         
         nombre_archivo = filedialog.askopenfilename(title="Abrir", initialdir="C:/", filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")])
-        if nombre_archivo:
-            self.archivo_actual = nombre_archivo
+        #usamos el is not para comparar dos objetos y que no sean lo mismo en este caso comparamos el nombre del archivo con otro objeto "None" (inexistente)
+        if nombre_archivo is not None:
             with open(nombre_archivo,"r",encoding="UTF-8") as archivo:
                 contenido = archivo.read()
             self.cuadro_texto.delete("1.0","end")    
@@ -45,7 +43,18 @@ class App(ttk.Frame):
 
 
     def guardar_arch(self):
-        pass
+        """funcion que guarda un archivo"""
+        
+        nombre_archivo = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")])
+        
+        if nombre_archivo is not None:
+            contenido = self.cuadro_texto.get("1.0", tk.END)
+            with open(nombre_archivo, "w") as archivo:
+                archivo.write(contenido)
+        else:
+            contenido = self.texto.get("1.0", tk.END)
+            with open(self.archivo_actual, "w") as archivo:
+                archivo.write(contenido)
 
     def salir_arch(self):    
         pass
